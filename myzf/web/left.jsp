@@ -16,7 +16,6 @@
 
 <c:if test="${sessionScope.LOGIN_USER==null}">
     <script language="javascript">
-        <!--
         function login(){
             if( document.getElementById("uname").value =="" ){
                 alert("用户名不能为空");
@@ -30,7 +29,6 @@
                 return true;
             }
         }
-        -->
     </script>
 
     <form action="UserAction_login" method="post" name="myForm" onsubmit="return login()">
