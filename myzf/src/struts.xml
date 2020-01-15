@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+-->
+
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant><!--开启方法动态调用-->
+    <constant name="struts.custom.i18n.resources" value="globalMessages"></constant>
+    <constant name="struts.configuration.xml.reload" value="true"></constant>
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+    <constant name="struts.devMode" value="true"></constant>
+    <constant name="struts.ui.theme" value="simple"></constant><!--统一设置主题 -->
+
+    <package name="default" extends="struts-default">
+
+
+
+        <interceptors>
+            <interceptor name="myInterceptor" class="com.myzf.interceptor.MyInterceptor"></interceptor><!--声明自定义拦截器-->
+            <interceptor name="loginInterceptor" class="com.myzf.interceptor.LoginInterceptor"></interceptor>
+            <interceptor name="methodInterceptor" class="com.myzf.interceptor.MyMethodInterceptor"></interceptor>
+        </interceptors>
+
+        <!--全局result-->
+        <global-results>
+            <result name="login">login.jsp</result>
+            <result name="myNullResult">exception500.jsp</result>
+        </global-results>
+
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+
+        <!--定义一个全局的异常--> <!-- 统一异常处理-->
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.NullPointerException" result="myNullResult"></exception-mapping>
+        </global-exception-mappings>
+
+
+
+        <!--系统登入登出控制器-->
+        <action name="UserAction_*" class="com.myzf.action.UserAction" method="{1}">
+            <result name="success" type="chain">IndexAction_search</result><!--链-->
+            <result name="error" type="dispatcher">error.jsp</result><!--请求转发页面 默认    可以带参数-->
+            <result name="logOutSuccess" type="redirectAction">GoAction_login</result><!--重定向   不带参数-->
+            <result name="input">{1}.jsp</result>
+            <interceptor-ref name="myInterceptor"></interceptor-ref><!--引用自定义拦截器-->
+            <interceptor-ref name="logger"></interceptor-ref><!--引用某个拦截器-->
+            <interceptor-ref name="defaultStack"></interceptor-ref><!--注意：如果手动引用拦截器，则必须显示引用默认拦截器栈defaultStack-->
+        </action>
+
+        <!--首页控制器-->
+        <action name="IndexAction_*" class="com.myzf.action.IndexAction" method="{1}">
+            <result name="index" >trueIndex.jsp</result>
+            <result name="detail">detail.jsp</result>
+        </action>
+
+        <!--用户后台控制器 -->
+        <action name="FwxxAction_*" class="com.myzf.action.FwxxAction" method="{1}">
+            <result name="my">my.jsp</result>
+            <result name="success">success.jsp</result>
+            <result name="error" >error.jsp</result>
+            <result name="post">post.jsp</result>
+            <result name="update">update.jsp</result>
+
+            <!--<interceptor-ref name="loginInterceptor"></interceptor-ref>-->
+            <interceptor-ref name="methodInterceptor">
+                <param name="includeMethods">findMyList,post,update,toUpdate,delete</param><!--黑名单-->
+                <param name="excludeMethods">toPost</param><!--白名单-->
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+        </action>
+
+        <action name="LanguageAction" class="com.myzf.action.LanguageAction">
+            <result name="index" type="chain">IndexAction_search</result>
+        </action>
+
+        <action name="GoAction_*" class="com.myzf.action.GoAction">
+            <result name="success">{1}.jsp</result>
+        </action>
+
+        <action name="FwlxAction" class="com.myzf.action.FwlxAction">
+            <result name="fwlxlist">fwlxlist.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

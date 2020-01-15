@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="myzf:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/myzf_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="myzf/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="myzf" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

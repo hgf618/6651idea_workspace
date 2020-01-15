@@ -1,0 +1,34 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="strutsUploadDownload:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/strutsUploadDownload_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="strutsUploadDownload" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/jstl.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/standard.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/ognl-3.1.21.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/servlet-api.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/ezmorph-1.0.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/commons-io-2.6.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/commons-lang-2.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/log4j-api-2.11.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/freemarker-2.3.28.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/log4j-core-2.11.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/json-lib-2.3-jdk15.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/commons-lang3-3.8.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/commons-logging-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/javassist-3.20.0-GA.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/struts2-core-2.5.20.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/commons-fileupload-1.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/commons-beanutils-1.9.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/commons-collections-3.2.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/strutsUploadDownload/web/WEB-INF/lib/struts2-json-plugin-2.5.20.jar" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="strutsUploadDownload/web/Web" />
+    </root>
+  </artifact>
+</component>

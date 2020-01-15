@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+-->
+
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+    <constant name="struts.multipart.maxSize" value="524288000"></constant>
+    <package name="default" extends="json-default">
+        <action name="upload" class="com.demo.action.UploadAction">
+            <result name="success" type="redirect">
+                /upload.jsp
+            </result>
+        </action>
+
+        <action name="upload2" class="com.demo.action.UploadAction2">
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypesSet">*/*</param>
+                <param name="maximumSize">522190848</param><!--所上传文件大小应 < maximumSize < maxSize(常量struts.multipart.maxSize)-->
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+        </action>
+
+        <action name="upload3" class="com.demo.action.UploadAction3">
+            <result name="jsonResult" type="json"></result>
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypesSet">*/*</param>
+                <param name="maximumSize">522190848</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+        </action>
+
+        <action name="download" class="com.demo.action.DownloadAction" >
+            <result name="success" type="stream">
+                <param  name="contentType">image/jpeg</param><!-- 指定下载文件类型 -->
+                <!-- 此处${fileName} 类似于EL表达式写法，值依赖于Action中传递的变量，且与变量名一致
+                如果页面显示图片，
+                则可以把contentDisposition 值修改为inline;filename="${fileName}
+                 -->
+                <param name="contentDisposition">attacthment;filename="${fileName}"</param>
+                <param  name="inputName">inputStream</param>
+                <param  name="bufferSize">1024</param><!--指定下载文件缓存的大小  -->
+            </result>
+        </action>
+
+
+    </package>
+
+</struts>
